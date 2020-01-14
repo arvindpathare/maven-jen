@@ -31,6 +31,7 @@
             </manifest>
           </archive>
 		  </configuration>
+		  </plugin>
 		</plugins>
 		 <properties>
     <maven.compiler.source>1.6</maven.compiler.source>
