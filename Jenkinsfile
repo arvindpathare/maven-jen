@@ -32,14 +32,21 @@ stages {
         }
         stage('Docker-Version') {
             steps {
-			script {                
-    docker.withRegistry('', 'my-dockerhub-credentials') {
-        app.push("${env.BUILD_NUMBER}")
-        app.push("latest")
-    }
-}
-}
+                script {
+					def version = readFile('VERSION')
+                    def versions = version.split('\\.')
+                    def major = versions[0]
+                    def minor = versions[0] + '.' + versions[1]
+                    def patch = version.trim()
+                    docker.withRegistry('', 'my-dockerhub-credentials') {
+                        def image = docker.build('arvindpathare/maven:latest')
+                        image.push()
+                        image.push(major)
+                        image.push(minor)
+                        image.push(patch)
                     }
                 }
             }
-        
+        }
+    }
+}
