@@ -31,13 +31,15 @@
             </manifest>
           </archive>
 		  </configuration>
-		  <groupId>org.apache.maven.plugins</groupId>
+		  </plugin>
+		  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
             <source>1.6</source>
             <target>1.6</target>
         </configuration>
-		  </plugin>
+    </plugin>
 		</plugins>
 		 </build>
 </project>
