@@ -32,11 +32,12 @@ stages {
         }
         stage('Docker-Version') {
             steps {
-                
-    docker.withRegistry('https://registry.hub.docker.com', 'my-dockerhub-credentials') {
+			script {                
+    docker.withRegistry('', 'my-dockerhub-credentials') {
         app.push("${env.BUILD_NUMBER}")
         app.push("latest")
     }
+}
 }
                     }
                 }
