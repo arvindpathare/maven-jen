@@ -30,7 +30,7 @@ stages {
                 }
             }
         }
-        stage('Build') {
+        stage('Docker-Version') {
             steps {
                 script {
 					def version = readFile('VERSION')
