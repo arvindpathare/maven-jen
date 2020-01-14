@@ -32,7 +32,8 @@ stages {
         }
         stage('Deliver') {
             steps {
-                echo 'deploy it later'
+                sh 'docker build -t arvindpathare/new_project/dev'
+				sh 'docker push arvindpathare/new_project/dev:latest'
             }
         }
     }
