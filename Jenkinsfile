@@ -30,11 +30,22 @@ stages {
                 }
             }
         }
-        stage('Deliver') {
+        stage('Build') {
             steps {
-				sh 'docker login -u arvindpathare -p Sai@baba123'
-				sh 'docker build -t arvindpathare/maven:latest .'
-				sh 'docker push arvindpathare/maven:latest'
+                script {
+					def version = readFile('VERSION')
+                    def versions = version.split('\\.')
+                    def major = versions[0]
+                    def minor = versions[0] + '.' + versions[1]
+                    def patch = version.trim()
+                    docker.withRegistry('', 'my-dockerhub-credentials') {
+                        def image = docker.build('arvindpathare/maven:latest')
+                        image.push()
+                        image.push(major)
+                        image.push(minor)
+                        image.push(patch)
+                    }
+                }
             }
         }
     }
