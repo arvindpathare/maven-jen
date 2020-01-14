@@ -32,7 +32,7 @@ stages {
         }
         stage('Deliver') {
             steps {
-				sh '$docker login'
+				
 				sh 'docker build -t arvindpathare/maven:latest .'
 				sh 'docker push arvindpathare/maven:latest'
             }
