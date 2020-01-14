@@ -32,8 +32,9 @@ stages {
         }
         stage('Deliver') {
             steps {
-                sh 'sudo docker build -t arvindpathare/new_project/dev .'
-				sh 'sudo docker push arvindpathare/new_project/dev:latest'
+				sh 'docker login'
+                sh 'docker build -t arvindpathare/new_project/dev .'
+				sh 'docker push arvindpathare/new_project/dev:latest'
             }
         }
     }
